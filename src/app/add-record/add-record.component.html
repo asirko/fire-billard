@@ -1,0 +1,20 @@
+<div id="add-recored">
+
+  <div id="main">
+    <span *ngFor="let valueMain of MainEnumValues">
+      <input type="radio" value="casse" [(ngModel)]="valueMain.code" name="main" id="{{valueMain.code}}">
+      <label for="{{valueMain.code}}">{{valueMain.label}}</label>
+    </span>
+  </div>
+
+  <div id="resultat">
+
+    <span *ngFor="let valueResultat of ResultatEnumValues">
+      <input type="radio" value="resultat" [(ngModel)]="valueResultat.code" name="main" id="{{valueResultat.code}}">
+      <label for="{{valueResultat.code}}">{{valueResultat.label}}</label>
+    </span>
+  </div>
+
+  <button (click)="enregistrerPartie(main, resultat)">Enregistrer</button>
+
+</div>

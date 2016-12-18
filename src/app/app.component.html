@@ -1,3 +1,12 @@
-<h1>
-  {{title}}
-</h1>
+<a [routerLink]="['/home']"> Accueil </a>
+<a [routerLink]="['/add-record']"> Ajouter une partie </a>
+<a [routerLink]="['/stats']"> Stats </a>
+
+<button md-raised-button (click)="login()">
+  Use My Facebook Account
+</button>
+<button md-raised-button (click)="logout()">
+  Logout
+</button>
+
+<router-outlet></router-outlet>
