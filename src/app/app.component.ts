@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthProviders } from "angularfire2";
-import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -9,14 +7,6 @@ import { AuthService } from "./services/auth.service";
 })
 export class AppComponent {
 
-  constructor( private authService: AuthService ) {
-  }
+  constructor() { }
 
-  login() {
-    this.authService.login(AuthProviders.Facebook);
-  }
-
-  logout() {
-    this.authService.logout();
-  }
 }

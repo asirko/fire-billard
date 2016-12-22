@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from "angularfire2/angularfire2";
 import { HomeService } from "./home.service";
-import { CODE_FERME } from "../add-record/resultat-enum";
+import { CODE_FERME } from "../views/add-record/resultat-enum";
 import { AuthService } from "./auth.service";
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HomeData } from "../home/home-data";
+import { HomeData } from "../views/home/home-data";
 import { FirebaseObjectObservable } from "angularfire2";
 import { AngularFire } from "angularfire2/angularfire2";
 import 'rxjs/add/operator/take';

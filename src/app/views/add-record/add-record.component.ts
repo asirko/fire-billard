@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { RecordService } from "../services/record.service";
+import { RecordService } from "../../services/record.service";
 import 'rxjs/add/operator/take';
 import * as MainEnum from './main-enum';
 import * as ResultatEnum from './resultat-enum';
 
 @Component({
   selector: 'app-add-record',
-  templateUrl: './add-record.component.html',
+  templateUrl: 'add-record.component.html',
   providers: [],
-  styleUrls: ['./add-record.component.sass']
+  styleUrls: ['add-record.component.sass']
 })
 export class AddRecordComponent implements OnInit {
 
