@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
-import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
 import { AngularFire } from "angularfire2/angularfire2";
-import { HomeData } from "../home/home-data";
 import { HomeService } from "./home.service";
+import { CODE_FERME } from "../add-record/resultat-enum";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class RecordService {
-  private record$: FirebaseListObservable<any>;
-  private home$: FirebaseObjectObservable<HomeData>;
 
-  constructor(private af: AngularFire, private hs: HomeService) {
-    this.record$ = af.database.list('records');
-    this.home$ = hs.getHomeObservable();
-  }
+  constructor(private af: AngularFire,
+              private hs: HomeService,
+              private as : AuthService) { }
 
-  public getRecordObservable(): FirebaseListObservable<any> {
-    return this.record$;
-  }
+  public addRecord(main, resultat): void {
+    let user = this.as.getUser();
 
-  public addRecord(): void {
+    if (!user || !user.userId) {
+      throw 'utilisateur non connecté';
+    }
 
+    this.af.database.list('record/' + user.userId).push({main, resultat}).then( () => {
+      this.hs.updateHomeGames(resultat === CODE_FERME);
+    });
   }
 }

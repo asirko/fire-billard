@@ -1,3 +1,4 @@
+export const CODE_FERME = 'ferme';
 export const VALUES = [
   { code: 'perdu', label: 'Perdu' },
   { code: 'gagne', label: 'Gagné' },

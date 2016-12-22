@@ -22,17 +22,14 @@
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/router": "3.2.1",
     "@types/firebase": "^2.4.30",
-    "angularfire": "^2.1.0",
     "angularfire2": "^2.0.0-beta.6",
     "core-js": "^2.4.1",
-    "firebase": "^3.6.2",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
     "@angular/compiler-cli": "2.2.1",
-    "@types/firebase": "^2.4.30",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.21",

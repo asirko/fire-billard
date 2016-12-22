@@ -35,10 +35,9 @@ export class HomeService {
     this.home$.take(1).subscribe( (snap) => {
       let updatedHomeData: HomeData = {
         nbFermes: snap.nbFermes,
-        nbInscrits: snap.nbInscrits,
+        nbInscrits: snap.nbInscrits + 1,
         nbParties: snap.nbParties
       };
-      updatedHomeData.nbInscrits ++;
       this.home$.set(updatedHomeData);
     });
   }
