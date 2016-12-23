@@ -1,17 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { AuthService } from "../services/auth.service";
 import { AuthProviders } from "angularfire2";
+import {AuthGuardService} from "../services/auth-guard.service";
+import {Observable, Subscription} from "rxjs";
+import {User} from "../services/user";
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.sass']
+  styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, OnDestroy {
+  public isAuthentified$ : Observable<boolean>;
+  public user : User;
 
-  constructor( private authService: AuthService ) { }
+  private subIsAuth : Subscription;
 
-  ngOnInit() { }
+  constructor( private authService : AuthService,
+               private authGuardService : AuthGuardService ) {
+    this.isAuthentified$ = authGuardService.isAuthentified();
+  }
+
+  ngOnInit() {
+    this.subIsAuth = this.isAuthentified$.subscribe(() => {
+      this.user = this.authService.getUser();
+    });
+  }
+
+  ngOnDestroy() {
+    this.subIsAuth.unsubscribe();
+  }
 
   login() {
     this.authService.login(AuthProviders.Facebook);

@@ -1,10 +1,22 @@
-<a [routerLink]="['/home']"> Accueil </a>
-<a [routerLink]="['/add-record']"> Ajouter une partie </a>
-<a [routerLink]="['/stats']"> Stats </a>
+<div class="nav" [ngClass]="{'hide': !(isAuthentified$ | async)}">
+  <a [routerLink]="['/home']" class="nav-link">
+    <i class="fa fa-home" aria-hidden="true"> </i>
+  </a>
+  <a [routerLink]="['/add-record']" class="nav-link">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+  </a>
+  <a [routerLink]="['/stats']" class="nav-link">
+    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+  </a>
 
-<button md-raised-button (click)="login()">
-  Use My Facebook Account
-</button>
-<button md-raised-button (click)="logout()">
-  Logout
-</button>
+  <div class="nav-logged-in">
+    <img [src]="user?.profilePicture" class="nav-logged-in-picture" alt="Image du profile FaceBook" (click)="logout()">
+    <i class="fa fa-sign-out nav-logged-in-logout text-danger" aria-hidden="true"></i>
+  </div>
+</div>
+
+<div class="nav-disconnected" [ngClass]="{'hide': (isAuthentified$ | async)}">
+  <button (click)="login()" class="nav-disconnected-btn">
+    Se connecter avec Facebook <i class="fa fa-facebook-official" aria-hidden="true"></i>
+  </button>
+</div>

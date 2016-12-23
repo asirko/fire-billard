@@ -1,0 +1,39 @@
+
+.hide {
+  display: none !important;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-size: 1.6rem;
+  margin: 10px;
+}
+
+.text-danger {
+  color: red !important;
+}
+
+// forms
+.fb-form-select-btn {
+  input {
+    position: absolute;
+    left: -9999px;
+  }
+
+  label {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    text-align: center;
+  }
+  input:checked + label {
+    background-color: #ffdd33;
+  }
+}

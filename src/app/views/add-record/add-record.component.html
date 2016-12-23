@@ -1,20 +1,19 @@
-<div id="add-recored">
+<div class="fb-add-record">
 
-  <div id="main">
-    <span *ngFor="let valueMain of MainEnumValues">
+  <div class="fb-add-record-hand">
+    <span *ngFor="let valueMain of MainEnumValues" class="fb-form-select-btn">
       <input type="radio" value="{{valueMain.code}}" [(ngModel)]="main" name="main" id="{{valueMain.code}}">
       <label for="{{valueMain.code}}">{{valueMain.label}}</label>
     </span>
   </div>
 
-  <div id="resultat">
-
-    <span *ngFor="let valueResultat of ResultatEnumValues">
+  <div class="fb-add-record-result">
+    <span *ngFor="let valueResultat of ResultatEnumValues" class="fb-form-select-btn">
       <input type="radio" value="{{valueResultat.code}}" [(ngModel)]="resultat" name="resultat" id="{{valueResultat.code}}">
       <label for="{{valueResultat.code}}">{{valueResultat.label}}</label>
     </span>
   </div>
 
-  <button (click)="enregistrerPartie()">Enregistrer</button>
+  <button (click)="enregistrerPartie()" class="fb-add-record-save">Enregistrer</button>
 
 </div>

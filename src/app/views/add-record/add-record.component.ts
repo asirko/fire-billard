@@ -8,7 +8,7 @@ import * as ResultatEnum from './resultat-enum';
   selector: 'app-add-record',
   templateUrl: 'add-record.component.html',
   providers: [],
-  styleUrls: ['add-record.component.sass']
+  styleUrls: ['add-record.component.scss']
 })
 export class AddRecordComponent implements OnInit {
 

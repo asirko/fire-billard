@@ -1,11 +1,15 @@
-<div>
-  <div>
-    Nombre de joueurs inscrits : {{(homeData$ | async)?.nbInscrits}}
+<div class="fb-home">
+  <div class="fb-home-intro">
+    En ce moment, il y a :
   </div>
-  <div>
-    Nombre de parties enregistrées : {{(homeData$ | async)?.nbParties}}
+  <div  class="fb-home-inscrit">
+    <span class="fb-home-value">{{(homeData$ | async)?.nbInscrits}}</span>
+     joueurs inscrits,
   </div>
-  <div>
-    Nombre de ferme réalisées : {{(homeData$ | async)?.nbFermes}}
+  <div class="fb-home-partie">
+    ils ont joué <span class="fb-home-value">{{(homeData$ | async)?.nbParties}}</span> parties de billard
+  </div>
+  <div class="fb-home-ferme">
+    et ont fait <span class="fb-home-value">{{(homeData$ | async)?.nbFermes}}</span> fermes
   </div>
 </div>

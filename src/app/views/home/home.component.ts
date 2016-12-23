@@ -7,7 +7,7 @@ import { FirebaseObjectObservable } from "angularfire2";
   selector: 'app-home',
   templateUrl: 'home.component.html',
   providers: [],
-  styleUrls: ['home.component.sass']
+  styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
 

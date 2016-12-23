@@ -1,0 +1,23 @@
+.fb-add-record {
+  display: flex;
+  flex-direction: column;
+}
+
+.fb-add-record-hand,
+.fb-add-record-result,
+.fb-add-record-save {
+  margin: 10px 0;
+}
+
+.fb-add-record-hand,
+.fb-add-record-result {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fb-add-record-hand > * {
+  flex-basis: 48%;
+}
+.fb-add-record-result > * {
+  flex-basis: 31%;
+}

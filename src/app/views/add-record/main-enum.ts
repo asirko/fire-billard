@@ -1,6 +1,6 @@
 export const VALUES = [
-  { code: 'casse', label: 'Je casse' },
-  { code: 'reprise', label: 'Je reprend la main' }
+  { code: 'casse', label: '1ère main' },
+  { code: 'reprise', label: '2ème main' }
 ];
 
 export function getByCode(code) {
