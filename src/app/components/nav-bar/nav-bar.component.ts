@@ -1,14 +1,14 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "../../services/auth.service";
 import { AuthProviders } from "angularfire2";
-import {AuthGuardService} from "../services/auth-guard.service";
+import {AuthGuardService} from "../../services/auth-guard.service";
 import {Observable, Subscription} from "rxjs";
-import {User} from "../services/user";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  templateUrl: 'nav-bar.component.html',
+  styleUrls: ['nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit, OnDestroy {
   public isAuthentified$ : Observable<boolean>;

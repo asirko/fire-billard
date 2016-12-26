@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from "angularfire2/angularfire2";
 import Reference = firebase.database.Reference;
-import { User } from "./user";
-import {HomeService} from "./home.service";
-//import 'rxjs/add/operator/take';
+import { User } from "../models/user";
+import { HomeService } from "./home.service";
 
 @Injectable()
 export class AuthService {

@@ -1,0 +1,25 @@
+@import "../../../styles/colors";
+
+.fb-stat-totaux {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr:first-child th:first-child {
+    border-top: none;
+    border-left: none;
+  }
+
+  th,
+  td {
+    border: 1px solid $color-secondary;
+    text-align: center;
+  }
+
+  .fb-stat-totaux-nombre {
+    font-size: 2rem;
+  }
+
+  .fb-stat-totaux-pourcent {
+    font-size: 1.2rem;
+  }
+}

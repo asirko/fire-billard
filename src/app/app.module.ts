@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AuthProviders, AuthMethods } from "angularfire2";
 import { AngularFireModule } from "angularfire2/angularfire2";
+import {ToastModule, ToastOptions} from "ng2-toastr";
 
 import { AuthService } from "./services/auth.service";
 import { HomeService } from "./services/home.service";
@@ -16,8 +17,13 @@ import { HomeComponent } from './views/home/home.component';
 import { StatsComponent } from './views/stats/stats.component';
 import { AddRecordComponent } from './views/add-record/add-record.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
+
+let options: ToastOptions = new ToastOptions({
+  animate: 'flyRight',
+  positionClass: 'toast-bottom-right',
+});
 
 @NgModule({
   declarations: [
@@ -35,7 +41,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    ToastModule.forRoot(options)
   ],
   providers: [AuthService, HomeService, RecordService],
   bootstrap: [AppComponent]

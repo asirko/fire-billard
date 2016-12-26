@@ -1,0 +1,32 @@
+.fb-form-select-btn {
+
+  input {
+    position: absolute;
+    left: -9999px;
+  }
+
+  label {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    color: $color-main-dark;
+    text-align: center;
+    box-shadow: 0px 2px 3px 1px rgba(0,0,0,0.5);
+  }
+  input:checked + label {
+    background-color: $color-secondary;
+    color: white;
+  }
+}
+
+.fb-form-save-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  background-color: $color-secondary;
+  box-shadow: 0px 2px 3px 1px rgba(0,0,0,0.5);
+  font-size: 1.6rem;
+  font-family: Alegreya;
+}

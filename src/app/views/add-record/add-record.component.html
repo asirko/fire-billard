@@ -7,13 +7,13 @@
     </span>
   </div>
 
-  <div class="fb-add-record-result">
+  <div class="fb-add-record-result" *ngIf="main">
     <span *ngFor="let valueResultat of ResultatEnumValues" class="fb-form-select-btn">
       <input type="radio" value="{{valueResultat.code}}" [(ngModel)]="resultat" name="resultat" id="{{valueResultat.code}}">
       <label for="{{valueResultat.code}}">{{valueResultat.label}}</label>
     </span>
   </div>
 
-  <button (click)="enregistrerPartie()" class="fb-add-record-save">Enregistrer</button>
+  <button (click)="enregistrerPartie()" *ngIf="main && resultat" class="fb-add-record-save fb-form-save-btn                                                                                                 ">Enregistrer</button>
 
 </div>

@@ -1,15 +1,13 @@
-.fb-home {
-  margin: auto 0;
-}
+@import "../../../styles/colors";
 
 .fb-home-intro {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .fb-home-inscrit,
 .fb-home-partie,
 .fb-home-ferme {
-  line-height: 4rem;
+  line-height: 2em;
   font-size: 1.6rem;
 }
 
@@ -21,7 +19,7 @@
 }
 
 .fb-home-value {
-  font-weight: bold;
-  font-size: 2rem;
-  color: #ffdd33;
+  font-family: Alegreya-Bold;
+  font-size: 2.4rem;
+  color: $color-secondary-light;
 }

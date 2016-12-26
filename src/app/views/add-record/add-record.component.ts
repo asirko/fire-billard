@@ -22,7 +22,10 @@ export class AddRecordComponent implements OnInit {
   ngOnInit() { }
 
   enregistrerPartie() {
-    this.rs.addRecord(this.main, this.resultat);
+    this.rs.addRecord(this.main, this.resultat).then( () => {
+      this.main = null;
+      this.resultat = null;
+    });
   }
 
 }

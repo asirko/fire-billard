@@ -1,17 +1,17 @@
 <div class="nav" [ngClass]="{'hide': !(isAuthentified$ | async)}">
-  <a [routerLink]="['/home']" class="nav-link">
+  <a [routerLink]="['/home']" [routerLinkActive]="['active']" class="nav-link">
     <i class="fa fa-home" aria-hidden="true"> </i>
   </a>
-  <a [routerLink]="['/add-record']" class="nav-link">
+  <a [routerLink]="['/add-record']" [routerLinkActive]="['active']" class="nav-link">
     <i class="fa fa-plus-circle" aria-hidden="true"></i>
   </a>
-  <a [routerLink]="['/stats']" class="nav-link">
+  <a [routerLink]="['/stats']" [routerLinkActive]="['active']" class="nav-link">
     <i class="fa fa-bar-chart" aria-hidden="true"></i>
   </a>
 
   <div class="nav-logged-in">
     <img [src]="user?.profilePicture" class="nav-logged-in-picture" alt="Image du profile FaceBook" (click)="logout()">
-    <i class="fa fa-sign-out nav-logged-in-logout text-danger" aria-hidden="true"></i>
+    <i class="fa fa-sign-out nav-logged-in-logout" aria-hidden="true"></i>
   </div>
 </div>
 

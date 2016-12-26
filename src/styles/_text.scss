@@ -1,0 +1,22 @@
+@font-face {
+  font-family: Alegreya;
+  src: url('./assets/fonts/Alegreya-Regular.ttf');
+}
+@font-face {
+  font-family: Alegreya-Black;
+  src: url('./assets/fonts/Alegreya-Black.ttf');
+  font-weight: bolder;
+}
+@font-face {
+  font-family: Alegreya-Bold;
+  src: url('./assets/fonts/Alegreya-Bold.ttf');
+  font-weight: bold;
+}
+
+html {
+  font-family: Alegreya;
+}
+
+.text-danger {
+  color: $color-danger;
+}
