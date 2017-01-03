@@ -36,9 +36,14 @@ export class AuthService {
   }
 
   login(provider) : void {
+    // alert('login ?');
     this.af.auth.login({
       provider: provider
-    });
+    })/*.then(() => {
+      alert('pas d\'erreur');
+    }).catch( () => {
+      alert('error')
+    })*/;
   }
 
   logout() : void {

@@ -46,15 +46,22 @@ export class RecordService {
         let agregatedResults : AgregatedRecord = records.reduce((accu: AgregatedRecord, current: Record) => {
           if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_PERDU) {
             accu.cassePerdu++;
-          } else if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_GAGNE) {
+          }
+          if (current.main === EnumMain.CODE_CASSE &&
+                    (current.resultat === EnumResultat.CODE_GAGNE || current.resultat === EnumResultat.CODE_FERME)) {
             accu.casseGagne++;
-          } else if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_FERME) {
+          }
+          if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_FERME) {
             accu.casseFerme++;
-          } else if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_PERDU) {
+          }
+          if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_PERDU) {
             accu.reprisePerdu++;
-          } else if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_GAGNE) {
+          }
+          if (current.main === EnumMain.CODE_REPRISE &&
+                    (current.resultat === EnumResultat.CODE_GAGNE || current.resultat === EnumResultat.CODE_FERME)) {
             accu.repriseGagne++;
-          } else if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_FERME) {
+          }
+          if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_FERME) {
             accu.repriseFerme++;
           }
           return accu;

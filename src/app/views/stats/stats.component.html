@@ -55,4 +55,10 @@
       </td>
     </tr>
   </table>
+
+  <div class="fb-stat-compte">
+    Tu as joué
+    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.getTotal()}}</span>
+    parties.
+  </div>
 </div>

@@ -23,11 +23,11 @@ export class AgregatedRecord {
   }
 
   public getTotalCasse() : number {
-    return this.cassePerdu + this.casseGagne + this.casseFerme;
+    return this.cassePerdu + this.casseGagne;
   }
 
   public getTotalReprise() : number {
-    return this.reprisePerdu + this.repriseGagne + this.repriseFerme;
+    return this.reprisePerdu + this.repriseGagne;
   }
 
   public getPercentCassePerdu(): number {
