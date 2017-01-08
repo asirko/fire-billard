@@ -1,6 +1,25 @@
 <div class="fb-l-panneau">
+  <div class="fb-l-panneau-title">Informations générales</div>
 
-  <div class="fb-l-panneau-title">Récapitulatifs globaux</div>
+  <div class="fb-stat-general-val">
+    Tu as joué
+    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.getTotal()}}</span>
+    parties.
+  </div>
+
+  <div class="fb-stat-general-val">
+    Tu as réussi à gagner au maximum
+    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.serieGagneeLaPlusLongue}}</span>
+    parties de suite. <br>
+    Ta série actuelle est de
+    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.serieGagneeCourante}}</span>
+    parties.
+  </div>
+</div>
+
+<div class="fb-l-panneau">
+
+  <div class="fb-l-panneau-title">Moyennes</div>
 
   <table class="fb-stat-totaux">
     <tr>
@@ -55,10 +74,4 @@
       </td>
     </tr>
   </table>
-
-  <div class="fb-stat-compte">
-    Tu as joué
-    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.getTotal()}}</span>
-    parties.
-  </div>
 </div>

@@ -1,0 +1,77 @@
+
+/************************************************************/
+/******************* hambourger *****************************/
+/************************************************************/
+
+/*
+format HTML à respecter :
+
+<div class="hambourger open">
+  <span></span>
+</div>
+
+la class "open" permet de jouer l'animation ouverture/fermeture
+
+(inspiré de : https://codepen.io/designcouch/pen/Atyop)
+*/
+
+.hambourger {
+  width: 32px;
+  height: 24px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+
+  &:before,
+  &:after {
+    content: '';
+  }
+
+  & span,
+  &:before,
+  &:after {
+    display: block;
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    background: $color-secondary;
+    border-radius: 100px; // volontairement large pour que la parsonalisation en taille ne gène pas
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+
+  &:before {
+    top: 0;
+    transform-origin: left center;
+  }
+
+  & span {
+    top: 40%;
+    transform-origin: left center;
+  }
+
+  &:after {
+    top: 80%;
+    transform-origin: left center;
+  }
+
+  &.open:before {
+    transform: rotate(45deg);
+    top: 0;
+    left: 0;
+  }
+
+  &.open span {
+    width: 0;
+    opacity: 0;
+  }
+
+  &.open:after {
+    transform: rotate(-45deg);
+    top: 95%;
+    left: 0;
+  }
+}

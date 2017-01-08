@@ -19,17 +19,23 @@
   }
 }
 
-.nav-logged-in {
-  position: relative;
+.nav-menu-toggler {
+  border: 1px solid $color-secondary;
+  margin: 0 10px;
+  flex-grow: 1;
+  color: $color-secondary;
+  text-align: center;
+  line-height: 57px;
+  font-size: 2.2rem;
 
-  .fa.nav-logged-in-logout{
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    font-size: 1.5em;
-    color: $color-main-dark;
+  .hambourger {
+    display: inline-block;
+    position: relative;
+    top: 7%;
+    margin-right: 10px;
   }
 }
+
 .nav-logged-in-picture {
   max-height: 54px;
 }

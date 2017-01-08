@@ -1,0 +1,26 @@
+@import "../../../styles/colors";
+
+.fb-footer-main-actions {
+  display: flex;
+  width: 100%;
+  min-height: 40px;
+  justify-content: space-around;
+}
+
+.fb-footer-main-action {
+  flex-grow: 1;
+  text-align: center;
+
+  .fa {
+    font-size: 58px;
+    color: white;
+  }
+
+  &.active .fa {
+    color: $color-secondary;
+  }
+
+  & + & {
+    border-left: 1px solid $color-secondary;
+  }
+}

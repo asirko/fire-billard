@@ -1,0 +1,59 @@
+@import "../../../styles/colors";
+
+.fb-menu {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.fb-menu-options {
+  position: relative;
+  width: calc(100% - 20px);
+  border: 1px solid $color-secondary;
+  margin: 85px 10px 0;
+  background-color: $color-main-dark;
+  box-shadow: 0px 2px 3px 1px rgba(0,0,0,0.5);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+  }
+  &:before {
+    top: -14px;
+    left: calc(50% - 10px);
+    border-bottom: 16px solid $color-main-dark;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+  &:after {
+    top: -17px;
+    left: calc(50% - 11px);
+    border-bottom: 17px solid $color-secondary;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    z-index: -1;
+  }
+}
+
+.fb-menu-option {
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+
+  &.active {
+    color: $color-secondary;
+  }
+
+  & + & {
+    border-top: 1px solid $color-secondary;
+  }
+
+  .fa {
+    margin-right: 5px;
+  }
+}

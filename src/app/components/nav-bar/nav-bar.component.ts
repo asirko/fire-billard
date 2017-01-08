@@ -1,9 +1,9 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { AuthProviders } from "angularfire2";
-import {AuthGuardService} from "../../services/auth-guard.service";
-import {Observable, Subscription} from "rxjs";
-import {User} from "../../models/user";
+import { AuthGuardService } from "../../services/auth-guard.service";
+import { Observable, Subscription } from "rxjs";
+import { User } from "../../models/user";
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,12 +16,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   private subIsAuth : Subscription;
 
+  private isMenuOpen: boolean = false;
+
   constructor( private authService : AuthService,
-               private authGuardService : AuthGuardService ) {
-    this.isAuthentified$ = authGuardService.isAuthentified();
-  }
+               private authGuardService : AuthGuardService ) { }
 
   ngOnInit() {
+    this.isAuthentified$ = this.authGuardService.isAuthentified();
     this.subIsAuth = this.isAuthentified$.subscribe(() => {
       this.user = this.authService.getUser();
     });
@@ -35,8 +36,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.authService.login(AuthProviders.Facebook);
   }
 
-  logout() {
-    this.authService.logout();
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen
   }
 
 }

@@ -6,6 +6,9 @@ export class AgregatedRecord {
   repriseGagne: number = 0;
   repriseFerme: number = 0;
 
+  serieGagneeLaPlusLongue: number = 0;
+  serieGagneeCourante: number = 0;
+
   public getPerdues() : number {
     return this.cassePerdu + this.reprisePerdu;
   }

@@ -34,41 +34,56 @@ export class RecordService {
       throw 'Arguments invalides pour addRecord'
     }
 
-    return Promise.resolve(this.records$.push({main, resultat, date: new Date().getTime()}).then( () => {
-      this.hs.updateHomeGames(resultat === EnumResultat.CODE_FERME);
-      this.toastr.success('Partie enregistrée !');
-    }));
+    return Promise.resolve(this.records$.push({main, resultat, date: new Date().getTime()})
+      .then( () => {
+        this.hs.updateHomeGames(resultat === EnumResultat.CODE_FERME);
+        this.toastr.success('Partie enregistrée !');
+      }));
   }
 
   private _initAgregatedResults$() : void {
     this.agregatedRecord$ = new Observable((observer) => {
       this.records$.subscribe((records) => {
-        let agregatedResults : AgregatedRecord = records.reduce((accu: AgregatedRecord, current: Record) => {
-          if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_PERDU) {
-            accu.cassePerdu++;
-          }
-          if (current.main === EnumMain.CODE_CASSE &&
-                    (current.resultat === EnumResultat.CODE_GAGNE || current.resultat === EnumResultat.CODE_FERME)) {
-            accu.casseGagne++;
-          }
-          if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_FERME) {
-            accu.casseFerme++;
-          }
-          if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_PERDU) {
-            accu.reprisePerdu++;
-          }
-          if (current.main === EnumMain.CODE_REPRISE &&
-                    (current.resultat === EnumResultat.CODE_GAGNE || current.resultat === EnumResultat.CODE_FERME)) {
-            accu.repriseGagne++;
-          }
-          if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_FERME) {
-            accu.repriseFerme++;
-          }
-          return accu;
-        }, new AgregatedRecord());
+        let agregatedResults : AgregatedRecord = records.reduce(RecordService._reduceRecords, new AgregatedRecord());
         observer.next(agregatedResults);
       });
     });
+  }
+
+  private static _reduceRecords(accu: AgregatedRecord, current: Record) : AgregatedRecord {
+
+    // comptabilisation des parties
+    if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_PERDU) {
+      accu.cassePerdu++;
+    }
+    if (current.main === EnumMain.CODE_CASSE &&
+      (current.resultat === EnumResultat.CODE_GAGNE || current.resultat === EnumResultat.CODE_FERME)) {
+      accu.casseGagne++;
+    }
+    if (current.main === EnumMain.CODE_CASSE && current.resultat === EnumResultat.CODE_FERME) {
+      accu.casseFerme++;
+    }
+    if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_PERDU) {
+      accu.reprisePerdu++;
+    }
+    if (current.main === EnumMain.CODE_REPRISE &&
+      (current.resultat === EnumResultat.CODE_GAGNE || current.resultat === EnumResultat.CODE_FERME)) {
+      accu.repriseGagne++;
+    }
+    if (current.main === EnumMain.CODE_REPRISE && current.resultat === EnumResultat.CODE_FERME) {
+      accu.repriseFerme++;
+    }
+
+    // calcul de la série la plus longue
+    if (current.resultat === EnumResultat.CODE_GAGNE || current.resultat === EnumResultat.CODE_FERME) {
+      accu.serieGagneeCourante++;
+    } else {
+      if (accu.serieGagneeLaPlusLongue < accu.serieGagneeCourante) {
+        accu.serieGagneeLaPlusLongue = accu.serieGagneeCourante;
+      }
+      accu.serieGagneeCourante = 0;
+    }
+    return accu;
   }
 
   public getAgregatedResults$() : Observable<any> {

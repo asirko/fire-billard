@@ -1,13 +1,30 @@
 @import "../styles/colors";
 
-header  {
-  background-color: $color-main-dark;
+header,
+footer,
+main {
+  width: calc(100% - 20px);
   padding: 10px;
-  box-shadow: 0px 2px 3px 1px rgba(0,0,0,0.5);
 }
 
-.fb-view-container {
-  margin: 10px;
+header,
+footer {
+  position: fixed;
+  height: 60px;
+  background-color: $color-main-dark;
+  box-shadow: 0 2px 3px 1px rgba(0,0,0,0.5);
+}
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}
+
+main {
+  margin: 70px 0;
 }
 
 

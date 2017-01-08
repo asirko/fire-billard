@@ -18,6 +18,9 @@ import { StatsComponent } from './views/stats/stats.component';
 import { AddRecordComponent } from './views/add-record/add-record.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { MainActionsComponent } from './components/main-actions/main-actions.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ManagedRecordComponent } from './views/managed-record/managed-record.component';
 
 
 let options: ToastOptions = new ToastOptions({
@@ -32,6 +35,9 @@ let options: ToastOptions = new ToastOptions({
     StatsComponent,
     AddRecordComponent,
     NavBarComponent,
+    MainActionsComponent,
+    MenuComponent,
+    ManagedRecordComponent,
   ],
   imports: [
     BrowserModule,

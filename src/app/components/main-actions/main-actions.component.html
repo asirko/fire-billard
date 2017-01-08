@@ -1,0 +1,8 @@
+<div class="fb-footer-main-actions" [ngClass]="{'hide': !(isAuthentified$ | async)}">
+  <a [routerLink]="['/add-record']" [routerLinkActive]="['active']" class="fb-footer-main-action">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+  </a>
+  <a [routerLink]="['/stats']" [routerLinkActive]="['active']" class="fb-footer-main-action">
+    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+  </a>
+</div>
