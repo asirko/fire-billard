@@ -1,32 +1,67 @@
-<div class="fb-add-record">
+<div class="fb-l-panneau">
+  <div class="fb-add-record-two-column">
+    <div class="fb-add-record-column">
+      <img [src]="user?.profilePicture" class="fb-add-record-picture" alt="Image du profile FaceBook">
+    </div>
 
-  <div class="fb-add-record-hand">
-    <span *ngFor="let valueMain of MainEnumValues" class="fb-form-select-btn">
-      <input type="radio" value="{{valueMain.code}}" [(ngModel)]="main" name="main" id="{{valueMain.code}}">
-      <label for="{{valueMain.code}}">{{valueMain.label}}</label>
-    </span>
+    <div>vs</div>
+
+    <div class="fb-add-record-column fb-add-record-opponent" (click)="toggleSearch()" *ngIf="!opponent">
+      <span>Inconnu</span>
+      <i class="fa fa-user-plus" aria-hidden="true"></i>
+    </div>
+    <div class="fb-add-record-column fb-add-record-opponent" (click)="toggleSearch()" *ngIf="opponent">
+      <img [src]="opponent?.profilePicture" class="fb-add-record-picture" alt="Image du profile FaceBook">
+      <div class="fb-search-user-name">{{opponent.username}}</div>
+    </div>
   </div>
 
-  <div class="fb-add-record-result" *ngIf="main">
-    <span *ngFor="let valueResultat of ResultatEnumValues" class="fb-form-select-btn">
-      <input type="radio" value="{{valueResultat.code}}" [(ngModel)]="resultat" name="resultat" id="{{valueResultat.code}}">
-      <label for="{{valueResultat.code}}">{{valueResultat.label}}</label>
-    </span>
+  <div class="fb-add-record-search-opponent" *ngIf="displaySearching">
+    <app-search-user (onUserSelected)="selectOpponent($event)"></app-search-user>
   </div>
 
-  <button (click)="enregistrerPartie()" *ngIf="main && resultat" class="fb-add-record-save fb-form-save-btn                                                                                                 ">Enregistrer</button>
+  <div class="fb-add-record-row fb-add-record-two-column">
+    <div class="fb-form-select-btn fb-add-record-column">
+      <input type="radio" value="user" [(ngModel)]="main" name="main" id="user-casse">
+      <label for="user-casse">Casse</label>
+    </div>
+    <div class="fb-form-select-btn fb-add-record-column">
+      <input type="radio" value="opponent" [(ngModel)]="main" name="main" id="opponent-casse">
+      <label for="opponent-casse">Casse</label>
+    </div>
+  </div>
 
+  <div class="fb-add-record-row fb-add-record-two-column">
+    <div class="fb-form-select-btn fb-add-record-column">
+      <input type="radio" value="user" [(ngModel)]="victory" name="victory" id="user-victory">
+      <label for="user-victory">Victoire</label>
+    </div>
+    <div class="fb-form-select-btn fb-add-record-column">
+      <input type="radio" value="opponent" [(ngModel)]="victory" name="victory" id="opponent-victory">
+      <label for="opponent-victory">Victoire</label>
+    </div>
+  </div>
+
+  <div class="fb-add-record-row fb-add-record-two-column">
+    <div class="fb-add-record-column">
+      <div *ngIf="isUserVictorious()" class="fb-form-checkbox">
+        <input type="checkbox" [(ngModel)]="ferme" id="isFermeUser">
+        <label for="isFermeUser">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          Ferme&nbsp;?
+        </label>
+      </div>
+    </div>
+    <div class="fb-add-record-column">
+      <div *ngIf="isOpponentVictorious()" class="fb-form-checkbox">
+        <input type="checkbox" [(ngModel)]="ferme" id="isFermeOpponent">
+        <label for="isFermeOpponent">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          Ferme&nbsp;?
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="enregistrerPartie()" *ngIf="main && victory" class="fb-add-record-save fb-form-save-btn">Enregistrer</button>
 </div>
-
-<!--<div>-->
-  <!--<div>-->
-    <!--adversaires-->
-    <!--<div></div>-->
-    <!--<div>vs</div>-->
-    <!--<div></div>-->
-  <!--</div>-->
-  <!--<div>casse</div>-->
-  <!--<div>victoire</div>-->
-  <!--<div>ferme</div>-->
-  <!--<div>enregistrer</div>-->
-<!--</div>-->

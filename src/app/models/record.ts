@@ -1,5 +1,6 @@
 export class Record {
   main: string;
   resultat: string;
-  date: Date;
+  date: number;
+  opponentId?: string;
 }

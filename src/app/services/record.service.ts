@@ -9,41 +9,78 @@ import { FirebaseListObservable } from "angularfire2";
 import { Record } from "../models/record";
 import { AgregatedRecord } from "../models/agregated-record";
 import { Observable } from "rxjs";
+import {User} from "../models/user";
+
+const USER = 'user';
 
 @Injectable()
 export class RecordService {
   private records$ : FirebaseListObservable<Array<Record>>;
   private agregatedRecord$ : Observable<any>;
+  private user : User;
 
   constructor(private af: AngularFire,
               private hs: HomeService,
               private as : AuthService,
               public toastr: ToastsManager) {
 
-    let user = this.as.getUser();
-    if (!user || !user.userId) {
+    this.user = this.as.getUser();
+    if (!this.user || !this.user.userId) {
       throw 'utilisateur non connecté';
     }
-    this.records$ = this.af.database.list('records/' + user.userId);
+    this.records$ = this.af.database.list('records/' + this.user.userId);
 
     this._initAgregatedResults$();
   }
 
-  public addRecord(main, resultat): Promise<any> {
-    if (!main || !resultat) {
+  public addRecord(opponent: User, main: string, victory: string, isFerme: boolean): Promise<any> {
+    if (!main || !victory) {
       throw 'Arguments invalides pour addRecord'
     }
 
-    return Promise.resolve(this.records$.push({main, resultat, date: new Date().getTime()})
-      .then( () => {
-        this.hs.updateHomeGames(resultat === EnumResultat.CODE_FERME);
-        this.toastr.success('Partie enregistrée !');
-      }));
+    let userRecord : Record = new Record(),
+        opponentRecord : Record = new Record(),
+        promesses : Array<Promise<any>> = [];
+
+    userRecord.date = new Date().getTime();
+    opponentRecord.date = new Date().getTime();
+
+    if (main === USER) {
+      userRecord.main = EnumMain.CODE_CASSE;
+      opponentRecord.main = EnumMain.CODE_REPRISE;
+    } else {
+      userRecord.main = EnumMain.CODE_REPRISE;
+      opponentRecord.main = EnumMain.CODE_CASSE;
+    }
+
+    if (victory === USER) {
+      userRecord.resultat = isFerme ? EnumResultat.CODE_FERME : EnumResultat.CODE_GAGNE;
+      opponentRecord.resultat = EnumResultat.CODE_PERDU;
+    } else {
+      userRecord.resultat = EnumResultat.CODE_PERDU;
+      opponentRecord.resultat = isFerme ? EnumResultat.CODE_FERME : EnumResultat.CODE_GAGNE;
+    }
+
+    if (opponent) {
+      userRecord.opponentId = opponent.userId;
+      opponentRecord.opponentId = this.user.userId;
+    }
+
+    promesses.push(Promise.resolve(this.records$.push(userRecord)));
+    if (opponent) {
+      promesses.push(Promise.resolve(this.af.database.list('records/' + opponent.userId).push(opponentRecord)));
+    }
+
+    return Promise.all(promesses).then(() => {
+      this.hs.updateHomeGames(isFerme);
+      this.toastr.success('Partie enregistrée !');
+    });
   }
 
   private _initAgregatedResults$() : void {
     this.agregatedRecord$ = new Observable((observer) => {
       this.records$.subscribe((records) => {
+        // todo ordonner dans le cas ou les partie validé ne sont pas par ordre chronologique
         let agregatedResults : AgregatedRecord = records.reduce(RecordService._reduceRecords, new AgregatedRecord());
         observer.next(agregatedResults);
       });

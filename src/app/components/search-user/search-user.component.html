@@ -1,0 +1,16 @@
+<!--<div class="fb-search-filter">-->
+  <!--<input type="text" [(ngModel)]="filter">-->
+<!--</div>-->
+
+<div class="fb-search-list">
+
+  <div class="fb-search-user-unknown" (click)="selectUser(null)">
+    <span>Inconnu</span>
+    <i class="fa fa-user" aria-hidden="true"></i>
+  </div>
+
+  <div class="fb-search-user" *ngFor="let user of (users$ | async)" (click)="selectUser(user)">
+    <img [src]="user?.profilePicture" class="fb-search-user-picture" alt="Image du profile FaceBook">
+    <div class="fb-search-user-name">{{user.username}}</div>
+  </div>
+</div>

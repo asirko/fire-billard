@@ -13,7 +13,6 @@ import { User } from "../../models/user";
 export class NavBarComponent implements OnInit, OnDestroy {
   public isAuthentified$ : Observable<boolean>;
   public user : User;
-
   private subIsAuth : Subscription;
 
   private isMenuOpen: boolean = false;

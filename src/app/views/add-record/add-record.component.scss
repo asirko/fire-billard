@@ -1,25 +1,33 @@
 @import "../../../styles/colors";
 
-.fb-add-record {
-  display: flex;
-  flex-direction: column;
+.fb-add-record-opponent .fa {
+  display: block;
+  font-size: 3rem;
 }
 
-.fb-add-record-hand,
-.fb-add-record-result,
-.fb-add-record-save {
-  margin: 10px 0;
+.fb-add-record-row {
+  margin: 20px 0;
 }
 
-.fb-add-record-hand,
-.fb-add-record-result {
+.fb-add-record-two-column {
   display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 
-.fb-add-record-hand > * {
-  flex-basis: 48%;
+.fb-add-record-column {
+  width: 45%;
+  text-align: center;
 }
-.fb-add-record-result > * {
-  flex-basis: 31%;
+
+.fb-add-record-save {
+  width: 100%;
+}
+
+.fb-add-record-search-opponent {
+  border: 1px solid $color-secondary;
+}
+
+.fb-add-record-picture {
+  height: 65px;
 }

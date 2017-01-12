@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AuthProviders, AuthMethods } from "angularfire2";
 import { AngularFireModule } from "angularfire2/angularfire2";
-import {ToastModule, ToastOptions} from "ng2-toastr";
+import { ToastModule, ToastOptions } from "ng2-toastr";
+import { BusyModule } from 'angular2-busy';
 
 import { AuthService } from "./services/auth.service";
 import { HomeService } from "./services/home.service";
@@ -21,7 +22,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MainActionsComponent } from './components/main-actions/main-actions.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ManagedRecordComponent } from './views/managed-record/managed-record.component';
-
+import { SearchUserComponent } from './components/search-user/search-user.component';
+import {UserService} from "./services/user.service";
 
 let options: ToastOptions = new ToastOptions({
   animate: 'flyRight',
@@ -38,6 +40,7 @@ let options: ToastOptions = new ToastOptions({
     MainActionsComponent,
     MenuComponent,
     ManagedRecordComponent,
+    SearchUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,9 +51,15 @@ let options: ToastOptions = new ToastOptions({
       method: AuthMethods.Popup
     }),
     AppRoutingModule,
-    ToastModule.forRoot(options)
+    ToastModule.forRoot(options),
+    BusyModule
   ],
-  providers: [AuthService, HomeService, RecordService],
+  providers: [
+    AuthService,
+    HomeService,
+    RecordService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

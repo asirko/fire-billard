@@ -12,7 +12,7 @@
     background-color: white;
     color: $color-main-dark;
     text-align: center;
-    box-shadow: 0px 2px 3px 1px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 3px 1px rgba(0,0,0,0.5);
   }
   input:checked + label {
     background-color: $color-secondary;
@@ -26,7 +26,53 @@
   border-radius: 50px;
   color: white;
   background-color: $color-secondary;
-  box-shadow: 0px 2px 3px 1px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 3px 1px rgba(0,0,0,0.5);
   font-size: 1.6rem;
   font-family: Alegreya;
+}
+
+/* checkbox */
+/* Structure HTML */
+/*
+      <divclass="fb-form-checkbox">
+        <input type="checkbox" id="unID">
+        <label for="unID">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          Le label
+        </label>
+      </div>
+*/
+.fb-form-checkbox {
+
+  margin-top: 5px;
+  margin-bottom: -6px;
+
+  input {
+    position: absolute;
+    left: -9999px;
+  }
+  i {
+    position: relative;
+    top: -5px;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    border: 3px solid $color-secondary;
+    border-radius: 5px;
+    margin-right: 10px;
+
+    &:before {
+      font-size: 1.4em;
+    }
+  }
+  label {
+    display: inline-flex;
+  }
+  input:not(:checked) ~ label i:before {
+    content: '';
+  }
+  input:checked ~ label i {
+    background-color: $color-secondary;
+    margin-bottom: 3px;
+  }
 }
