@@ -9,7 +9,8 @@ import { FirebaseListObservable } from "angularfire2";
 import { Record } from "../models/record";
 import { AgregatedRecord } from "../models/agregated-record";
 import { Observable } from "rxjs";
-import {User} from "../models/user";
+import { User } from "../models/user";
+import 'rxjs/add/operator/map';
 
 const USER = 'user';
 
@@ -77,13 +78,10 @@ export class RecordService {
     });
   }
 
-  private _initAgregatedResults$() : void {
-    this.agregatedRecord$ = new Observable((observer) => {
-      this.records$.subscribe((records) => {
-        // todo ordonner dans le cas ou les partie validé ne sont pas par ordre chronologique
-        let agregatedResults : AgregatedRecord = records.reduce(RecordService._reduceRecords, new AgregatedRecord());
-        observer.next(agregatedResults);
-      });
+  private _initAgregatedResults$(){
+
+    this.agregatedRecord$ = this.records$.map((records : Array<Record>) => {
+      return records.reduce(RecordService._reduceRecords, new AgregatedRecord());
     });
   }
 
