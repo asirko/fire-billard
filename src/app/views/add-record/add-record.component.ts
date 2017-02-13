@@ -5,6 +5,7 @@ import { AuthService } from "../../services/auth.service";
 import { AuthGuardService } from "../../services/auth-guard.service";
 import { User } from "../../models/user";
 import { Observable, Subscription } from "rxjs";
+import {ToastsManager} from "ng2-toastr";
 
 const VAL_USER = 'user';
 const VAL_OPPONENT = 'opponent';
@@ -31,7 +32,8 @@ export class AddRecordComponent implements OnInit, OnDestroy {
 
   constructor(private rs : RecordService,
               private authService : AuthService,
-              private authGuardService : AuthGuardService ) { }
+              private authGuardService : AuthGuardService,
+              public toastr: ToastsManager ) { }
 
   ngOnInit() {
     this.isAuthentified$ = this.authGuardService.isAuthentified();
@@ -50,6 +52,7 @@ export class AddRecordComponent implements OnInit, OnDestroy {
       this.victory = null;
       this.ferme = null;
       this.opponent = null;
+      this.toastr.success('Partie enregistrée !');
     });
   }
 

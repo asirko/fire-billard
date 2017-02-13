@@ -1,12 +1,8 @@
-<!--<div class="fb-search-filter">-->
-  <!--<input type="text" [(ngModel)]="filter">-->
-<!--</div>-->
-
 <div class="fb-search-list">
 
-  <div class="fb-search-user-unknown" (click)="selectUser(null)">
-    <span>Inconnu</span>
-    <i class="fa fa-user" aria-hidden="true"></i>
+  <div class="fb-search-user-unknown text-danger" (click)="selectUser(null)">
+    <span>Annuler</span>
+    <i class="fa fa-user-times" aria-hidden="true"></i>
   </div>
 
   <div class="fb-search-user" *ngFor="let user of (users$ | async)" (click)="selectUser(user)">

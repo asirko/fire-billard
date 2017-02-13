@@ -1,5 +1,24 @@
-<div class="fb-manage-action"></div>
-
-<div class="fb-manage-list">
-
+<div class="fb-manage-list fb-l-panneau">
+  <div class="fb-records" *ngFor="let record of (records$ | async)">
+    <div class="fb-record-info">
+      <div>
+        {{record.date | date:'dd/MM HH'}}h{{record.date | date:'mm'}}
+      </div>
+      <div>
+        {{getFormattedResultat(record)}} contre {{record.opponent?.username || 'un inconnu'}}
+      </div>
+    </div>
+    <div class="fb-record-supp" (click)="selectRecord(record)">
+      <i class="fa fa-trash fb-record-supp-button" aria-hidden="true"></i>
+    </div>
+  </div>
 </div>
+
+<app-popin-validation *ngIf="selectedRecord" (onDecision)="reactToPopin($event)">
+  <div class="popin-title">Supprimer une partie</div>
+  <div class="popin-question">
+    Êtes-vous sûr de vouloir supprimer cette partie&nbsp;?
+    <br>
+    Pensez à prévenir votre adversaire qu'il en fasse autant&nbsp;!
+  </div>
+</app-popin-validation>

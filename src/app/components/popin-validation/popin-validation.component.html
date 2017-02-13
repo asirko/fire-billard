@@ -1,0 +1,15 @@
+<div class="popin" (click)="preventCancel($event)">
+  <div class="popin-header">
+    <div class="popin-header-title"><ng-content select=".popin-title"></ng-content></div>
+    <i class="fa fa-times popin-header-fermer" (click)="cancel()" aria-hidden="true"></i>
+  </div>
+
+  <div class="popin-question">
+    <ng-content select=".popin-question"></ng-content>
+  </div>
+
+  <div class="popin-actions">
+    <div class="popin-action-valider" (click)="validate()">Valider</div>
+    <div class="popin-action-annuler" (click)="cancel()">Annuler</div>
+  </div>
+</div>

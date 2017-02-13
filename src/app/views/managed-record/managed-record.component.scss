@@ -1,0 +1,20 @@
+@import "../../../styles/colors";
+
+.fb-records {
+  display: flex;
+  padding: 4px 0;
+
+  &:not(:first-child) {
+    border-top: 1px solid #fff;
+  }
+}
+
+.fb-record-info {
+  flex-grow: 1;
+}
+
+.fb-record-supp-button{
+  padding: 4px;
+  font-size: 36px;
+  color: $color-secondary;
+}

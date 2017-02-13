@@ -24,6 +24,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { ManagedRecordComponent } from './views/managed-record/managed-record.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
 import {UserService} from "./services/user.service";
+import { PopinValidationComponent } from './components/popin-validation/popin-validation.component';
 
 let options: ToastOptions = new ToastOptions({
   animate: 'flyRight',
@@ -41,6 +42,7 @@ let options: ToastOptions = new ToastOptions({
     MenuComponent,
     ManagedRecordComponent,
     SearchUserComponent,
+    PopinValidationComponent,
   ],
   imports: [
     BrowserModule,

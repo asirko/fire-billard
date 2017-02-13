@@ -6,13 +6,21 @@ import {FirebaseListObservable, AngularFire} from "angularfire2";
 export class UserService {
 
   private users$ : FirebaseListObservable<Array<User>>;
+  private users : Array<User>;
 
   constructor (private af: AngularFire) {
     this.users$ = this.af.database.list('users');
+    this.users$.subscribe((users) => {
+      this.users = users;
+    });
   }
 
-  getUsers$ () {
+  getUsers$ () : FirebaseListObservable<Array<User>> {
     return this.users$;
+  }
+
+  getUsers () : Array<User> {
+    return this.users;
   }
 
 }

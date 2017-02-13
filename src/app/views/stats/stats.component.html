@@ -3,23 +3,35 @@
 
   <div class="fb-stat-general-val">
     Tu as joué
-    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.getTotal()}}</span>
+    <span class="fb-stat-val">{{agregatedRecords?.getTotal()}}</span>
     parties.
   </div>
 
   <div class="fb-stat-general-val">
     Tu as réussi à gagner au maximum
-    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.serieGagneeLaPlusLongue}}</span>
+    <span class="fb-stat-val">{{agregatedRecords?.serieGagneeLaPlusLongue}}</span>
     parties de suite. <br>
     Ta série actuelle est de
-    <span class="fb-stat-val">{{(agregatedRecords$ | async)?.serieGagneeCourante}}</span>
+    <span class="fb-stat-val">{{agregatedRecords?.serieGagneeCourante}}</span>
     parties.
   </div>
 </div>
 
 <div class="fb-l-panneau">
 
-  <div class="fb-l-panneau-title">Moyennes</div>
+  <div class="fb-l-panneau-title" (click)="toggleSearch()">
+    <div>Moyennes</div>
+    <div class="fb-stat-filtre">
+      (contre
+      <span *ngIf="!filterUser">tout le monde</span>
+      <span *ngIf="filterUser">{{filterUser.username}}</span>
+      )
+    </div>
+  </div>
+
+  <div class="fb-add-record-search-opponent" *ngIf="displaySearching">
+    <app-search-user (onUserSelected)="selectOpponent($event)"></app-search-user>
+  </div>
 
   <table class="fb-stat-totaux">
     <tr>
@@ -31,46 +43,46 @@
     <tr>
       <th>Perdue</th>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.cassePerdu}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentCassePerdu() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.cassePerdu}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentCassePerdu() | number:'1.0-1'}}&nbsp;%</div>
       </td>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.reprisePerdu}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentReprisePerdu() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.reprisePerdu}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentReprisePerdu() | number:'1.0-1'}}&nbsp;%</div>
       </td>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.getPerdues()}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentPerdu() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.getPerdues()}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentPerdu() | number:'1.0-1'}}&nbsp;%</div>
       </td>
     </tr>
     <tr>
       <th>Gagnée</th>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.casseGagne}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentCasseGagne() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.casseGagne}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentCasseGagne() | number:'1.0-1'}}&nbsp;%</div>
       </td>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.repriseGagne}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentRepriseGagne() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.repriseGagne}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentRepriseGagne() | number:'1.0-1'}}&nbsp;%</div>
       </td>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.getGagnees()}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentGagne() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.getGagnees()}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentGagne() | number:'1.0-1'}}&nbsp;%</div>
       </td>
     </tr>
     <tr>
       <th>Fermée</th>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.casseFerme}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentCasseFerme() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.casseFerme}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentCasseFerme() | number:'1.0-1'}}&nbsp;%</div>
       </td>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.repriseFerme}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentRepriseFerme() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.repriseFerme}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentRepriseFerme() | number:'1.0-1'}}&nbsp;%</div>
       </td>
       <td>
-        <div class="fb-stat-totaux-nombre">{{(agregatedRecords$ | async)?.getFermees()}}</div>
-        <div class="fb-stat-totaux-pourcent">{{(agregatedRecords$ | async)?.getPercentFerme() | number:'1.0-1'}}&nbsp;%</div>
+        <div class="fb-stat-totaux-nombre">{{agregatedRecords?.getFermees()}}</div>
+        <div class="fb-stat-totaux-pourcent">{{agregatedRecords?.getPercentFerme() | number:'1.0-1'}}&nbsp;%</div>
       </td>
     </tr>
   </table>
