@@ -45,7 +45,7 @@ export class ManagedRecordComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() { }
 
-  static getFormattedResultat(record : Record) : string {
+  getFormattedResultat(record : Record) : string {
     if (record.resultat === EnumResultat.CODE_FERME) {
       return record.main === EnumMain.CODE_CASSE ? 'Casse ferme' : 'Reprise ferme';
     } else if (record.resultat === EnumResultat.CODE_GAGNE) {
