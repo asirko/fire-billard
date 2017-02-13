@@ -16,7 +16,7 @@
 .popin {
   background-color: $color-main;
   width: 80%;
-  padding: 5px;
+  padding: 10px;
   margin: 0 auto;
 }
 
@@ -28,12 +28,12 @@
 
 .popin-header-title,
 .popin-header-fermer {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: $color-secondary;
 }
 
 .popin-question {
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 .popin-actions {

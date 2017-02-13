@@ -17,8 +17,15 @@
 <app-popin-validation *ngIf="selectedRecord" (onDecision)="reactToPopin($event)">
   <div class="popin-title">Supprimer une partie</div>
   <div class="popin-question">
-    Êtes-vous sûr de vouloir supprimer cette partie&nbsp;?
+    <p>
+      Êtes-vous sûr de vouloir supprimer la partie
+      du {{selectedRecord.date | date:'dd/MM'}}
+      à {{selectedRecord.date | date:'HH'}}h{{selectedRecord.date | date:'mm'}}<span *ngIf="selectedRecord.opponent">
+      contre {{selectedRecord.opponent?.username}}</span>&nbsp;?
+    </p>
     <br>
-    Pensez à prévenir votre adversaire qu'il en fasse autant&nbsp;!
+    <p *ngIf="selectedRecord.opponent">
+      Pensez à prévenir {{selectedRecord.opponent?.username}} qu'il en fasse autant&nbsp;!
+    </p>
   </div>
 </app-popin-validation>

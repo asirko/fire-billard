@@ -27,10 +27,10 @@ export class ManagedRecordComponent implements OnInit, OnDestroy {
         users$ = this.userService.getUsers$();
 
     this.records$ = Observable.combineLatest(users$, records$, (users: Array<User>, records: Array<Record>) => {
-      return records.map(addingOpponent).sort(byReverseDate);
+      return records.map(addOpponent).sort(byReverseDate);
 
       // cb
-      function addingOpponent(record: Record) {
+      function addOpponent(record: Record) {
         if (record.opponentId) {
           record.opponent = users.find(user => user.userId === record.opponentId);
         }
@@ -45,7 +45,7 @@ export class ManagedRecordComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() { }
 
-  getFormattedResultat(record : Record) : string {
+  static getFormattedResultat(record : Record) : string {
     if (record.resultat === EnumResultat.CODE_FERME) {
       return record.main === EnumMain.CODE_CASSE ? 'Casse ferme' : 'Reprise ferme';
     } else if (record.resultat === EnumResultat.CODE_GAGNE) {
